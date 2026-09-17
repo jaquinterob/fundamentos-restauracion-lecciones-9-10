@@ -51,6 +51,7 @@
     }
     window.addEventListener("storage", onStorage);
     window.addEventListener("keydown", onKey);
+    bindFocusChrome();
   }
 
   function bind() {
@@ -70,6 +71,12 @@
   }
 
   function onKey(e) {
+    if (e.key === "Escape" && document.body.classList.contains("focus-open")) {
+      e.preventDefault();
+      closeFocus();
+      return;
+    }
+    if (document.body.classList.contains("focus-open")) return;
     if (e.key === "ArrowRight" || e.key === " ") {
       e.preventDefault();
       go(index + 1);
@@ -248,10 +255,14 @@
   }
 
   function renderMaestro(slide) {
+    const expandIcon =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
     const escrituras = (slide.escrituras || [])
       .map(
-        (e) => `
-      <figure class="scripture-block">
+        (e, i) => `
+      <figure class="scripture-block focusable" data-focus="escritura" data-i="${i}">
+        <button type="button" class="focus-btn" aria-label="Ver en grande">${expandIcon}<span>Ver en grande</span></button>
         <figcaption>${escapeHtml(e.ref)}</figcaption>
         <blockquote>${escapeHtml(e.texto)}</blockquote>
       </figure>`
@@ -260,8 +271,9 @@
 
     const citas = (slide.citas || [])
       .map(
-        (c) => `
-      <figure class="quote-block">
+        (c, i) => `
+      <figure class="quote-block focusable" data-focus="cita" data-i="${i}">
+        <button type="button" class="focus-btn" aria-label="Ver en grande">${expandIcon}<span>Ver en grande</span></button>
         <blockquote>${escapeHtml(c.texto)}</blockquote>
         <figcaption>
           <strong>${escapeHtml(c.autor)}</strong>
@@ -272,10 +284,13 @@
       .join("");
 
     els.stage.innerHTML = `
-      <article class="slide-card" data-tipo="${escapeHtml(slide.tipo)}">
+      <article class="slide-card mesa" data-tipo="${escapeHtml(slide.tipo)}">
         ${
           slide.imagen
-            ? `<div class="slide-media"><img src="${slide.imagen}" alt="" loading="eager" /></div>`
+            ? `<div class="slide-media focusable" data-focus="imagen">
+                <button type="button" class="focus-btn" aria-label="Ver imagen en grande">${expandIcon}<span>Ver en grande</span></button>
+                <img src="${slide.imagen}" alt="" loading="eager" />
+              </div>`
             : ""
         }
         <div class="slide-content">
@@ -283,9 +298,7 @@
             <span class="badge">${escapeHtml(slide.bloque)}</span>
             <span class="badge tipo">${escapeHtml(labelTipo(slide.tipo))}</span>
             <span class="badge soft">${slide.minutos} min</span>
-            <span class="badge soft">Alumno: ${escapeHtml(
-              labelInvitacion(slide.invitacionAlumno)
-            )}</span>
+            <span class="badge soft">Mesa · toca Ver en grande</span>
           </div>
           <h1 class="slide-title">${escapeHtml(slide.titulo)}</h1>
           ${
@@ -307,9 +320,11 @@
           }
           ${
             slide.preguntar
-              ? `<section class="block preguntar"><h3>Qué preguntar / invitar</h3><p class="pregunta-text">${escapeHtml(
-                  slide.preguntar
-                )}</p></section>`
+              ? `<section class="block preguntar focusable" data-focus="pregunta">
+                  <button type="button" class="focus-btn" aria-label="Ver pregunta en grande">${expandIcon}<span>Ver en grande</span></button>
+                  <h3>Qué preguntar / invitar</h3>
+                  <p class="pregunta-text">${escapeHtml(slide.preguntar)}</p>
+                </section>`
               : ""
           }
           ${
@@ -321,6 +336,82 @@
           }
         </div>
       </article>`;
+
+    bindFocusTriggers(slide);
+  }
+
+  function bindFocusTriggers(slide) {
+    els.stage.querySelectorAll("[data-focus]").forEach((el) => {
+      const open = () => openFocus(slide, el.getAttribute("data-focus"), el.getAttribute("data-i"));
+      el.querySelector(".focus-btn")?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        open();
+      });
+      // Double-click block also opens (handy on trackpad)
+      el.addEventListener("dblclick", open);
+    });
+  }
+
+  function openFocus(slide, kind, idx) {
+    const layer = document.getElementById("focus-layer");
+    const body = document.getElementById("focus-body");
+    if (!layer || !body) return;
+    const i = Number(idx || 0);
+    let html = "";
+
+    if (kind === "imagen" && slide.imagen) {
+      html = `<div class="focus-image"><img src="${slide.imagen}" alt="" /></div>`;
+    } else if (kind === "escritura") {
+      const e = (slide.escrituras || [])[i];
+      if (!e) return;
+      html = `
+        <div class="focus-kicker">Escritura</div>
+        <h2 class="focus-ref">${escapeHtml(e.ref)}</h2>
+        <p class="focus-text">${escapeHtml(e.texto)}</p>`;
+    } else if (kind === "cita") {
+      const c = (slide.citas || [])[i];
+      if (!c) return;
+      html = `
+        <div class="focus-kicker">Cita</div>
+        <p class="focus-text">${escapeHtml(c.texto)}</p>
+        <p class="focus-source"><strong>${escapeHtml(c.autor)}</strong><br>${escapeHtml(
+          c.fuente
+        )}</p>`;
+    } else if (kind === "pregunta") {
+      html = `
+        <div class="focus-kicker">Pregunta</div>
+        <p class="focus-text focus-question">${escapeHtml(slide.preguntar)}</p>`;
+    } else {
+      return;
+    }
+
+    body.innerHTML = html;
+    layer.hidden = false;
+    document.body.classList.add("focus-open");
+  }
+
+  function closeFocus() {
+    const layer = document.getElementById("focus-layer");
+    if (layer) layer.hidden = true;
+    document.body.classList.remove("focus-open");
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+
+  function bindFocusChrome() {
+    document.getElementById("focus-close")?.addEventListener("click", closeFocus);
+    document.getElementById("focus-layer")?.addEventListener("click", (e) => {
+      if (e.target.id === "focus-layer") closeFocus();
+    });
+    document.getElementById("focus-browser-fs")?.addEventListener("click", async () => {
+      const layer = document.getElementById("focus-layer");
+      if (!layer) return;
+      try {
+        if (!document.fullscreenElement) await layer.requestFullscreen();
+        else await document.exitFullscreen();
+      } catch (_) {}
+    });
   }
 
   function renderToc() {
