@@ -714,6 +714,174 @@ body.vista-alumnos .tv-chrome {
   }
 }
 
+/* —— Mesa / focus grande (portátil en mesa) —— */
+body.vista-maestro .main-stage {
+  width: min(1200px, 100%);
+  padding: 16px 20px 28px;
+}
+
+body.vista-maestro .slide-card.mesa {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(360px, 1.15fr);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  body.vista-maestro .slide-card.mesa {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.vista-maestro .scripture-block blockquote,
+body.vista-maestro .quote-block blockquote {
+  font-size: 1.12rem;
+  line-height: 1.5;
+}
+
+body.vista-maestro .pregunta-text {
+  font-size: 1.25rem;
+}
+
+.focusable {
+  position: relative;
+}
+
+.focus-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.focus-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.slide-media.focusable .focus-btn {
+  top: 14px;
+  right: 14px;
+}
+
+.focus-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: #f4f4f2;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 16px clamp(18px, 4vw, 48px) 28px;
+}
+
+.focus-layer[hidden] {
+  display: none !important;
+}
+
+.focus-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.focus-body {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 18px;
+  overflow: auto;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.focus-kicker {
+  justify-self: start;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6b6b66;
+}
+
+.focus-ref {
+  justify-self: start;
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.focus-text {
+  justify-self: start;
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+  line-height: 1.4;
+  color: #151515;
+  max-width: 34ch;
+}
+
+.focus-question {
+  max-width: 28ch;
+  font-weight: 700;
+}
+
+.focus-source {
+  justify-self: start;
+  margin: 0;
+  color: #5c5c58;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.4;
+}
+
+.focus-image {
+  width: min(920px, 100%);
+  background: #eceae4;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.focus-image img {
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+body.focus-open .fab-nav,
+body.focus-open .nav-bar,
+body.focus-open .topbar {
+  visibility: hidden;
+}
+
+@media (min-width: 900px) {
+  body.vista-maestro .slide-media {
+    max-height: min(70vh, 640px);
+    position: sticky;
+    top: 72px;
+  }
+
+  body.vista-maestro .slide-media img {
+    max-height: min(64vh, 600px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
