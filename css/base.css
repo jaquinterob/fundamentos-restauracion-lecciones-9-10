@@ -13,8 +13,8 @@
   --shadow: 0 18px 50px rgba(10, 18, 32, 0.12);
   --radius: 22px;
   --safe-tv: clamp(28px, 4.5vw, 72px);
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Sora", "Avenir Next", sans-serif;
+  --font-display: "Nunito Sans", "Avenir Next", sans-serif;
+  --font-body: "Nunito Sans", "Avenir Next", sans-serif;
   --dur-fast: 150ms;
   --dur-base: 250ms;
   --dur-slow: 400ms;
