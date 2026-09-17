@@ -1,10 +1,6 @@
 window.IMG = {
   firstVision:
     "https://www.churchofjesuschrist.org/imgs/fe5db8da0174bc36aff99e6ae7b55e337d9eb965/full/!1200,/0/default",
-  christ:
-    "https://www.churchofjesuschrist.org/imgs/31f3469e570fc51a03b4a7202128d443d03ce22d/full/!1200,/0/default",
-  christWide:
-    "https://www.churchofjesuschrist.org/imgs/979279a69cf56887185d13618d3ad7f45429351d/full/!1200,/0/default",
   oaks:
     "https://www.churchofjesuschrist.org/imgs/db96515429b848527e30220394ba6299c297236a/full/!1200,/0/default",
   firstPresidency:
@@ -34,7 +30,7 @@ window.SLIDES = [
     preguntar:
       "Si tuvieran que decir en una sola frase quién es Jesucristo para ustedes… ¿qué dirían?",
     tip: "Anota 3–4 respuestas en la pizarra. No corrijas; solo escucha y agradece.",
-    imagen: IMG.christ,
+    imagen: "",
     invitacionAlumno: "medita",
     alumnoImagen: false,
     tvFoco: "pregunta",
@@ -101,7 +97,7 @@ window.SLIDES = [
     preguntar:
       "¿Qué frase les tocó el corazón? ¿Por qué es importante saber que Cristo está dispuesto a perdonarnos?",
     tip: "Da 20–30 segundos de silencio después de leer. Luego pregunta la frase que les tocó.",
-    imagen: IMG.christ,
+    imagen: "",
     invitacionAlumno: "estudia",
     alumnoImagen: false,
     tvFoco: "escritura",
@@ -131,7 +127,7 @@ window.SLIDES = [
     ],
     preguntar: "¿En qué sentidos es «infinita» la Expiación del Salvador?",
     tip: "Deja que ellos enumeren: tiempo, personas, mundos, sufrimiento, fin de sacrificios de animales, etc.",
-    imagen: IMG.christWide,
+    imagen: "",
     invitacionAlumno: "estudia",
     alumnoImagen: false,
     tvFoco: "escritura",
@@ -167,7 +163,7 @@ window.SLIDES = [
     preguntar:
       "¿Cómo cambia tu fe cuando crees que la Expiación no es solo para «el mundo», sino también para ti?",
     tip: "Invita a reformular en primera persona: «Él tomó sobre Sí MIS…». 60–90 segundos en silencio.",
-    imagen: IMG.christ,
+    imagen: "",
     invitacionAlumno: "estudia",
     alumnoImagen: false,
     tvFoco: "escritura",
@@ -192,7 +188,7 @@ window.SLIDES = [
     preguntar:
       "¿Qué haré esta semana para invitar el poder de Jesucristo más plenamente a mi vida?",
     tip: "Testimonio breve (30–40 s) de Cristo como Redentor. Luego puente a lección 10.",
-    imagen: IMG.christ,
+    imagen: "",
     invitacionAlumno: "actua",
     alumnoImagen: false,
     tvFoco: "pregunta",
@@ -333,9 +329,9 @@ window.SLIDES = [
     citas: [],
     preguntar: "",
     tip: "Oración de cierre. Sonríe. No te disculpes por ser nuevo.",
-    imagen: IMG.christ,
+    imagen: "",
     invitacionAlumno: "actua",
-    alumnoImagen: true,
+    alumnoImagen: false,
     tvFoco: "imagen",
   },
 ];

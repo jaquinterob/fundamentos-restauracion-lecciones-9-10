@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Elige tipografía · Vista maestro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&family=Nunito+Sans:wght@400;600;700&family=Work+Sans:wght@400;600;700&family=Libre+Franklin:wght@400;600;700&family=Karla:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f3f3f1;
+        --card: #fff;
+        --ink: #171717;
+        --muted: #6b6b6b;
+        --line: #e4e4e0;
+        --accent: #1f2937;
+        --font: "Public Sans", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--ink);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        border-right: 1px solid var(--line);
+        background: #fafaf8;
+        padding: 20px 16px 40px;
+        overflow: auto;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+
+      .sidebar h1 {
+        font-size: 1.05rem;
+        margin: 0 0 6px;
+        font-weight: 700;
+      }
+
+      .sidebar p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.4;
+      }
+
+      .font-btn {
+        width: 100%;
+        text-align: left;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .font-btn.active {
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+
+      .font-btn strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+      }
+
+      .font-btn span {
+        color: var(--muted);
+        font-size: 0.78rem;
+        line-height: 1.35;
+      }
+
+      .preview {
+        padding: 24px;
+        overflow: auto;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 0.82rem;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .chip.active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+
+      .device {
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: width 0.2s ease;
+      }
+
+      .device.mac {
+        width: min(1100px, 100%);
+      }
+
+      .device.phone {
+        width: min(390px, 100%);
+      }
+
+      .mock-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        background: #fcfcfb;
+      }
+
+      .mock-top strong {
+        font-size: 0.86rem;
+      }
+
+      .mock-top span {
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+
+      .mock-body {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 0;
+        max-height: 70vh;
+      }
+
+      .device.phone .mock-body {
+        grid-template-columns: 1fr;
+        max-height: none;
+      }
+
+      .mock-media {
+        background: #eceae4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        min-height: 220px;
+      }
+
+      .mock-media img {
+        max-width: 100%;
+        max-height: 280px;
+        object-fit: contain;
+      }
+
+      .mock-content {
+        padding: 18px 18px 24px;
+        overflow: auto;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+
+      .badge {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 8px;
+        color: var(--muted);
+      }
+
+      .mock-content h2 {
+        margin: 0 0 14px;
+        font-size: clamp(1.35rem, 2vw, 1.8rem);
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      .block {
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+        margin-top: 12px;
+      }
+
+      .block h3 {
+        margin: 0 0 6px;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .block p {
+        margin: 0;
+        white-space: pre-wrap;
+        line-height: 1.5;
+        font-size: 0.98rem;
+      }
+
+      .scripture {
+        font-size: 1.02rem;
+        line-height: 1.45;
+      }
+
+      .ask {
+        background: #f6f6f4;
+        border-radius: 10px;
+        padding: 12px;
+      }
+
+      .ask p {
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .pick {
+        margin-top: 18px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        appearance: none;
+        border: 0;
+        border-radius: 10px;
+        padding: 12px 16px;
+        background: var(--accent);
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+      }
+
+      .btn.ghost {
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+
+      .current {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 860px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: relative;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .mock-body {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1>10 tipografías</h1>
+        <p>
+          Elige una fuente normal y legible para la vista maestro (Mac y
+          celular). Haz clic y mira el preview.
+        </p>
+        <div id="list"></div>
+      </aside>
+
+      <main class="preview">
+        <div class="toolbar">
+          <button class="chip active" data-device="mac" type="button">Mac</button>
+          <button class="chip" data-device="phone" type="button">Celular</button>
+          <span class="current" id="label">1 · Public Sans</span>
+        </div>
+
+        <div class="device mac" id="device">
+          <div class="mock-top">
+            <div>
+              <strong>Fundamentos de la Restauración · Lecciones 9 y 10</strong>
+              <div><span id="fontName">Public Sans</span> · 2 / 11</div>
+            </div>
+            <div><span>90:00</span></div>
+          </div>
+          <div class="mock-body">
+            <div class="mock-media">
+              <img
+                src="https://www.churchofjesuschrist.org/imgs/fe5db8da0174bc36aff99e6ae7b55e337d9eb965/full/!800,/0/default"
+                alt="Primera Visión"
+              />
+            </div>
+            <div class="mock-content">
+              <div class="badges">
+                <span class="badge">Lección 9</span>
+                <span class="badge">Historia</span>
+                <span class="badge">10 min</span>
+              </div>
+              <h2>José conoce al Redentor</h2>
+              <section class="block">
+                <h3>Qué decir</h3>
+                <p>
+                  El joven José Smith se sentía angustiado por sus pecados y
+                  clamó al Señor pidiendo misericordia. En el relato de 1832, el
+                  Señor le dijo que sus pecados eran perdonados.
+                </p>
+              </section>
+              <section class="block">
+                <h3>Escritura</h3>
+                <p class="scripture">
+                  Doctrina y Convenios 58:42 — He aquí, quien se ha arrepentido
+                  de sus pecados es perdonado; y yo, el Señor, no los recuerdo
+                  más.
+                </p>
+              </section>
+              <section class="block ask">
+                <h3>Qué preguntar</h3>
+                <p>
+                  ¿Qué aprendió José ese día sobre el Padre Celestial y sobre
+                  Jesucristo?
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <div class="pick">
+          <button class="btn" id="apply" type="button">Usar esta fuente</button>
+          <a class="btn ghost" href="clase.html?vista=maestro">Ir a la clase</a>
+        </div>
+        <p class="current" id="saved">
+          Al elegir, se guarda en este navegador y la clase la usará.
+        </p>
+      </main>
+    </div>
+
+    <script>
+      const FONTS = [
+        {
+          id: 1,
+          name: "Public Sans",
+          css: '"Public Sans", sans-serif',
+          why: "Muy legible, neutra, ideal para pantallas largas.",
+        },
+        {
+          id: 2,
+          name: "Source Sans 3",
+          css: '"Source Sans 3", sans-serif',
+          why: "Clásica de lectura digital; clara en Mac y móvil.",
+        },
+        {
+          id: 3,
+          name: "IBM Plex Sans",
+          css: '"IBM Plex Sans", sans-serif',
+          why: "Profesional y limpia; buen contraste en UI.",
+        },
+        {
+          id: 4,
+          name: "Nunito Sans",
+          css: '"Nunito Sans", sans-serif',
+          why: "Suave y amable, sin verse infantil.",
+        },
+        {
+          id: 5,
+          name: "Work Sans",
+          css: '"Work Sans", sans-serif',
+          why: "Compacta y moderna; aprovecha bien el espacio.",
+        },
+        {
+          id: 6,
+          name: "Libre Franklin",
+          css: '"Libre Franklin", sans-serif',
+          why: "Estilo editorial sobrio; títulos fuertes.",
+        },
+        {
+          id: 7,
+          name: "Karla",
+          css: '"Karla", sans-serif',
+          why: "Simple y abierta; fácil de leer en párrafos.",
+        },
+        {
+          id: 8,
+          name: "Atkinson Hyperlegible",
+          css: '"Atkinson Hyperlegible", sans-serif',
+          why: "Diseñada para máxima legibilidad.",
+        },
+        {
+          id: 9,
+          name: "Instrument Sans",
+          css: '"Instrument Sans", sans-serif',
+          why: "Minimalista actual, muy limpia en interfaces.",
+        },
+        {
+          id: 10,
+          name: "Schibsted Grotesk",
+          css: '"Schibsted Grotesk", sans-serif',
+          why: "Contemporánea y nítida; buen equilibrio.",
+        },
+      ];
+
+      const list = document.getElementById("list");
+      const device = document.getElementById("device");
+      const label = document.getElementById("label");
+      const fontName = document.getElementById("fontName");
+      const saved = document.getElementById("saved");
+      let current = Number(localStorage.getItem("fr225-font-id") || 1);
+
+      function applyFont(font) {
+        document.documentElement.style.setProperty("--font", font.css);
+        label.textContent = `${font.id} · ${font.name}`;
+        fontName.textContent = font.name;
+        list.querySelectorAll(".font-btn").forEach((btn) => {
+          btn.classList.toggle("active", Number(btn.dataset.id) === font.id);
+        });
+        current = font.id;
+      }
+
+      list.innerHTML = FONTS.map(
+        (f) => `
+        <button class="font-btn" type="button" data-id="${f.id}" style="font-family:${f.css}">
+          <strong>${f.id}. ${f.name}</strong>
+          <span>${f.why}</span>
+        </button>`
+      ).join("");
+
+      list.addEventListener("click", (e) => {
+        const btn = e.target.closest(".font-btn");
+        if (!btn) return;
+        const font = FONTS.find((f) => f.id === Number(btn.dataset.id));
+        applyFont(font);
+      });
+
+      document.querySelectorAll("[data-device]").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          document
+            .querySelectorAll("[data-device]")
+            .forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          device.className = `device ${chip.dataset.device}`;
+        });
+      });
+
+      document.getElementById("apply").addEventListener("click", () => {
+        const font = FONTS.find((f) => f.id === current);
+        localStorage.setItem("fr225-font-id", String(font.id));
+        localStorage.setItem("fr225-font-css", font.css);
+        localStorage.setItem("fr225-font-name", font.name);
+        saved.textContent = `Guardada: ${font.name}. Abre la clase y se aplicará.`;
+      });
+
+      applyFont(FONTS.find((f) => f.id === current) || FONTS[0]);
+    </script>
+  </body>
+</html>

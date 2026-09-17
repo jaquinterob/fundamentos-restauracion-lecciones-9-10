@@ -54,8 +54,12 @@
   }
 
   function bind() {
-    els.btnPrev?.addEventListener("click", () => go(index - 1));
-    els.btnNext?.addEventListener("click", () => go(index + 1));
+    document.querySelectorAll("[data-prev]").forEach((btn) => {
+      btn.addEventListener("click", () => go(index - 1));
+    });
+    document.querySelectorAll("[data-next]").forEach((btn) => {
+      btn.addEventListener("click", () => go(index + 1));
+    });
     els.btnTimer?.addEventListener("click", toggleTimer);
     els.btnMenu?.addEventListener("click", () => els.menu?.classList.add("open"));
     els.menu?.addEventListener("click", (e) => {
@@ -99,6 +103,12 @@
 
   function go(next) {
     index = Math.max(0, Math.min(slides.length - 1, next));
+    document.querySelectorAll("[data-prev]").forEach((btn) => {
+      btn.disabled = index <= 0;
+    });
+    document.querySelectorAll("[data-next]").forEach((btn) => {
+      btn.disabled = index >= slides.length - 1;
+    });
     render();
     publish();
   }
