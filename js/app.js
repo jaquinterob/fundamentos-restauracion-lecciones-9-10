@@ -40,7 +40,7 @@
     restoreState();
     setVista(vista, false);
     renderToc();
-    render();
+    go(index);
     bind();
     updateTimerDisplay();
     if (els.courseLabel) {
