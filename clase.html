@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Clase · Fundamentos 9–10</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+  </head>
+  <body class="vista-maestro ux-1">
+    <div class="app-shell">
+      <header class="topbar maestro-only">
+        <div class="meta">
+          <strong data-course>Fundamentos de la Restauración</strong>
+          <span
+            ><span data-ux-label>Teleprompter sagrado</span> ·
+            <span data-slide-index>1 / 1</span></span
+          >
+        </div>
+        <div class="top-controls">
+          <a class="chip" href="index.html">Inicio</a>
+          <button type="button" class="chip" data-vista="maestro">Maestro</button>
+          <button type="button" class="chip" data-vista="alumnos">Alumnos / TV</button>
+          <span class="timer" data-timer>90:00</span>
+          <button type="button" class="chip" data-timer-toggle>Iniciar</button>
+          <button type="button" class="chip" data-menu>Secciones</button>
+        </div>
+      </header>
+
+      <div class="tv-chrome" data-tv-chrome></div>
+
+      <main class="main-stage">
+        <div class="progress-row">
+          <div class="progress-bar"><span data-progress></span></div>
+        </div>
+        <div data-stage></div>
+      </main>
+
+      <nav class="nav-bar maestro-only">
+        <button type="button" class="btn btn-ghost" data-prev>Atrás</button>
+        <button type="button" class="btn btn-primary" data-next>Siguiente</button>
+      </nav>
+    </div>
+
+    <div class="side-menu" data-side-menu>
+      <div class="side-panel">
+        <h2>Secciones</h2>
+        <div data-toc></div>
+      </div>
+    </div>
+
+    <script src="data/slides.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
