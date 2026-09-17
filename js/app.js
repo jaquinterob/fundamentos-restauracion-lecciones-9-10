@@ -358,36 +358,60 @@
     if (!layer || !body) return;
     const i = Number(idx || 0);
     let html = "";
+    let textForSize = "";
 
     if (kind === "imagen" && slide.imagen) {
+      body.className = "focus-body focus-kind-image";
       html = `<div class="focus-image"><img src="${slide.imagen}" alt="" /></div>`;
     } else if (kind === "escritura") {
       const e = (slide.escrituras || [])[i];
       if (!e) return;
+      textForSize = e.texto || "";
       html = `
-        <div class="focus-kicker">Escritura</div>
-        <h2 class="focus-ref">${escapeHtml(e.ref)}</h2>
-        <p class="focus-text">${escapeHtml(e.texto)}</p>`;
+        <div class="focus-panel">
+          <div class="focus-kicker">Escritura</div>
+          <h2 class="focus-ref">${escapeHtml(e.ref)}</h2>
+          <p class="focus-text">${escapeHtml(e.texto)}</p>
+        </div>`;
     } else if (kind === "cita") {
       const c = (slide.citas || [])[i];
       if (!c) return;
+      textForSize = c.texto || "";
       html = `
-        <div class="focus-kicker">Cita</div>
-        <p class="focus-text">${escapeHtml(c.texto)}</p>
-        <p class="focus-source"><strong>${escapeHtml(c.autor)}</strong><br>${escapeHtml(
-          c.fuente
-        )}</p>`;
+        <div class="focus-panel">
+          <div class="focus-kicker">Cita</div>
+          <p class="focus-text">${escapeHtml(c.texto)}</p>
+          <p class="focus-source"><strong>${escapeHtml(c.autor)}</strong><br>${escapeHtml(
+            c.fuente
+          )}</p>
+        </div>`;
     } else if (kind === "pregunta") {
+      textForSize = slide.preguntar || "";
       html = `
-        <div class="focus-kicker">Pregunta</div>
-        <p class="focus-text focus-question">${escapeHtml(slide.preguntar)}</p>`;
+        <div class="focus-panel">
+          <div class="focus-kicker">Pregunta</div>
+          <p class="focus-text focus-question">${escapeHtml(slide.preguntar)}</p>
+        </div>`;
     } else {
       return;
     }
 
+    const size = focusSizeClass(textForSize);
+    if (kind !== "imagen") {
+      body.className = `focus-body focus-kind-text ${size}`;
+    }
     body.innerHTML = html;
+    body.scrollTop = 0;
     layer.hidden = false;
     document.body.classList.add("focus-open");
+  }
+
+  function focusSizeClass(text) {
+    const n = String(text || "").trim().length;
+    if (n > 900) return "size-xlong";
+    if (n > 520) return "size-long";
+    if (n > 280) return "size-medium";
+    return "size-short";
   }
 
   function closeFocus() {

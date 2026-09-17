@@ -796,8 +796,8 @@ body.vista-maestro .pregunta-text {
   z-index: 80;
   background: #f4f4f2;
   display: grid;
-  grid-template-rows: auto 1fr;
-  padding: 16px clamp(18px, 4vw, 48px) 28px;
+  grid-template-rows: auto minmax(0, 1fr);
+  padding: 12px clamp(14px, 3vw, 36px) 16px;
 }
 
 .focus-layer[hidden] {
@@ -808,23 +808,37 @@ body.vista-maestro .pregunta-text {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  flex: 0 0 auto;
 }
 
 .focus-body {
+  min-height: 0;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 8px 4px 28px;
+  display: block;
+}
+
+.focus-body.focus-kind-image,
+.focus-body.size-short {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 18px;
-  overflow: auto;
-  width: min(980px, 100%);
+}
+
+.focus-panel {
+  width: min(920px, 100%);
   margin: 0 auto;
-  text-align: left;
+  display: grid;
+  gap: 14px;
 }
 
 .focus-kicker {
-  justify-self: start;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
@@ -832,33 +846,59 @@ body.vista-maestro .pregunta-text {
 }
 
 .focus-ref {
-  justify-self: start;
   margin: 0;
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .focus-text {
-  justify-self: start;
   margin: 0;
   white-space: pre-wrap;
-  font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: clamp(1.35rem, 2.8vw, 2.1rem);
   line-height: 1.4;
   color: #151515;
-  max-width: 34ch;
+  max-width: 42ch;
 }
 
 .focus-question {
-  max-width: 28ch;
+  max-width: 30ch;
   font-weight: 700;
 }
 
 .focus-source {
-  justify-self: start;
   margin: 0;
   color: #5c5c58;
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   line-height: 1.4;
+  padding-top: 4px;
+  border-top: 1px solid #e4e4e0;
+}
+
+/* Textos medianos y largos: más anchos, letra un poco menor, scroll cómodo */
+.focus-body.size-medium .focus-text {
+  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  max-width: 48ch;
+  line-height: 1.42;
+}
+
+.focus-body.size-long .focus-text {
+  font-size: clamp(1.12rem, 2vw, 1.55rem);
+  max-width: 56ch;
+  line-height: 1.45;
+}
+
+.focus-body.size-xlong .focus-text {
+  font-size: clamp(1.02rem, 1.7vw, 1.35rem);
+  max-width: 62ch;
+  line-height: 1.48;
+}
+
+.focus-body.size-long .focus-panel,
+.focus-body.size-xlong .focus-panel {
+  gap: 12px;
 }
 
 .focus-image {
