@@ -1,8 +1,53 @@
 (() => {
   const params = new URLSearchParams(location.search);
-  const ux = 1; // Experiencia elegida: Teleprompter sagrado
-  const STORAGE_KEY = "fr225-clase-sync-v1";
-  const DURATION = (window.COURSE?.durationMin || 90) * 60;
+  const catalog = window.CLASS_CATALOG || [];
+  const defaultClassId = catalog[0]?.id || "11-12";
+  const classId = params.get("clase") || defaultClassId;
+  const classMeta =
+    catalog.find((c) => c.id === classId) || catalog[0] || { id: classId, file: `data/clases/${classId}.js` };
+
+  document.body.classList.add("ux-1");
+  loadScript(classMeta.file)
+    .then(startApp)
+    .catch((err) => {
+      console.error(err);
+      const stage = document.querySelector("[data-stage]");
+      if (stage) {
+        stage.innerHTML = `<article class="slide-card"><p>No se pudo cargar la clase <strong>${escapeHtml(
+          classId
+        )}</strong>. Vuelve al <a href="index.html">inicio</a>.</p></article>`;
+      }
+    });
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = src.includes("?") ? `${src}&v=2` : `${src}?v=2`;
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error(`No se cargó ${src}`));
+      document.head.appendChild(s);
+    });
+  }
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function startApp() {
+  const STORAGE_KEY = `fr225-clase-sync-${COURSE?.id || classId}`;
+  const DURATION = (window.COURSE?.durationMin || 60) * 60;
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
 
   const els = {
     courseLabel: document.querySelector("[data-course]"),
@@ -33,7 +78,6 @@
 
   const slides = window.SLIDES || [];
 
-  document.body.classList.add("ux-1");
   boot();
 
   function boot() {
@@ -43,11 +87,12 @@
     go(index);
     bind();
     updateTimerDisplay();
+    document.title = `${COURSE.lessons} · Fundamentos`;
     if (els.courseLabel) {
       els.courseLabel.textContent = `${COURSE.title} · ${COURSE.lessons}`;
     }
     if (els.uxLabel) {
-      els.uxLabel.textContent = COURSE.experienceName || "Teleprompter sagrado";
+      els.uxLabel.textContent = `${COURSE.experienceName || "Teleprompter sagrado"} · ${COURSE.durationMin} min`;
     }
     window.addEventListener("storage", onStorage);
     window.addEventListener("keydown", onKey);
@@ -101,7 +146,7 @@
     if (pushUrl) {
       const url = new URL(location.href);
       url.searchParams.set("vista", vista);
-      url.searchParams.set("ux", "1");
+      url.searchParams.set("clase", COURSE?.id || classId);
       history.replaceState({}, "", url);
     }
     render();
@@ -239,7 +284,11 @@
       <article class="alumno-slide" data-inv="${escapeHtml(inv)}">
         <header class="alumno-header">
           <p class="alumno-meta">${escapeHtml(slide.bloque)}</p>
-          <h1>${escapeHtml(slide.titulo)}</h1>
+          ${
+            slide.ocultarTituloAlumno
+              ? ""
+              : `<h1>${escapeHtml(slide.titulo)}</h1>`
+          }
         </header>
         ${
           showImage
@@ -501,7 +550,7 @@
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify({
-        ux: 1,
+        clase: COURSE?.id || classId,
         index,
         remaining,
         timerRunning,
@@ -509,7 +558,7 @@
       })
     );
     const url = new URL(location.href);
-    url.searchParams.set("ux", "1");
+    url.searchParams.set("clase", COURSE?.id || classId);
     url.searchParams.set("vista", vista);
     url.searchParams.set("s", String(index));
     history.replaceState({}, "", url);
@@ -562,12 +611,5 @@
     if (Number.isNaN(n)) return min;
     return Math.max(min, Math.min(max, n));
   }
-
-  function escapeHtml(str) {
-    return String(str || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;");
-  }
+  } // end startApp
 })();

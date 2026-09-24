@@ -60,6 +60,83 @@ img {
   padding: 32px 20px;
 }
 
+.home-gallery {
+  place-items: start center;
+  gap: 28px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.home-intro {
+  width: min(720px, 100%);
+  padding-top: 12px;
+}
+
+.home-intro .eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.home-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  margin: 8px 0 10px;
+  line-height: 1.1;
+}
+
+.home-intro p {
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.class-grid {
+  width: 100%;
+  display: grid;
+  gap: 16px;
+}
+
+.class-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.class-card.featured {
+  border-color: rgba(176, 137, 69, 0.45);
+}
+
+.class-card-body {
+  padding: 22px 24px 24px;
+}
+
+.class-card-body .eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.class-card-body h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  margin: 6px 0 8px;
+  line-height: 1.25;
+}
+
+.class-card-body p {
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+}
+
 .home-card {
   width: min(720px, 100%);
   background: var(--card);

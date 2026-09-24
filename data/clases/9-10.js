@@ -8,9 +8,14 @@ window.IMG = {
 };
 
 window.COURSE = {
+  id: "9-10",
   title: "Fundamentos de la Restauración",
   code: "Religión 225",
   lessons: "Lecciones 9 y 10",
+  lessonTitles: [
+    "Jesucristo, nuestro divino Redentor",
+    "Profetas vivientes",
+  ],
   durationMin: 90,
   teacher: "John Quintero",
   experienceName: "Teleprompter sagrado",

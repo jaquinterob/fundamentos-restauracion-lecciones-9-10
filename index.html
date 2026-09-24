@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fundamentos de la Restauración · Lecciones 9–10</title>
+    <title>Fundamentos de la Restauración · Instituto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,34 +23,50 @@
         '"Nunito Sans", "Avenir Next", sans-serif'
       );
     </script>
-    <main class="home">
-      <section class="home-card">
-        <div class="home-hero" aria-hidden="true"></div>
-        <div class="home-body">
-          <div class="eyebrow">Religión 225 · Instituto</div>
-          <h1>Fundamentos de la Restauración</h1>
-          <p>
-            Lecciones <strong>9 y 10</strong>. Vista alumno alineada a la
-            capacitación de cursos fundamentales:
-            <strong>Prepararse → Participar → Actuar</strong> (Estudia, Medita,
-            Analiza, Comparte, Actúa). Diseño minimalista: solo lo que el alumno
-            necesita ver en el TV.
-          </p>
-          <div class="home-actions">
-            <a class="btn btn-primary" href="clase.html?ux=1&vista=maestro"
-              >Abrir vista maestro</a
-            >
-            <a class="btn btn-ghost" href="clase.html?ux=1&vista=alumnos"
-              >Abrir vista TV / alumnos</a
-            >
-          </div>
-          <div class="note">
-            Flujo recomendado: laptop → «TV / alumnos» → transmitir al
-            televisor. Celular → «maestro» para leer qué decir. Flechas ← →
-            también avanzan.
-          </div>
-        </div>
-      </section>
+    <main class="home home-gallery">
+      <header class="home-intro">
+        <div class="eyebrow">Religión 225 · Instituto</div>
+        <h1>Fundamentos de la Restauración</h1>
+        <p>
+          Elige la clase. En la laptop abre <strong>TV / alumnos</strong> y
+          transmite al televisor. En el celular abre <strong>maestro</strong>
+          para el guion. Flechas ← → también avanzan.
+        </p>
+      </header>
+      <div class="class-grid" data-class-grid></div>
     </main>
+    <script src="data/catalog.js"></script>
+    <script>
+      (() => {
+        const grid = document.querySelector("[data-class-grid]");
+        if (!grid || !window.CLASS_CATALOG) return;
+        grid.innerHTML = CLASS_CATALOG.map(
+          (c, i) => `
+        <article class="class-card${i === 0 ? " featured" : ""}">
+          <div class="class-card-body">
+            <div class="eyebrow">${escapeHtml(c.lessons)} · ${c.durationMin} min</div>
+            <h2>${escapeHtml(c.label)}</h2>
+            <p>${escapeHtml(c.blurb)}</p>
+            <div class="home-actions">
+              <a class="btn btn-primary" href="clase.html?clase=${encodeURIComponent(
+                c.id
+              )}&vista=maestro">Maestro</a>
+              <a class="btn btn-ghost" href="clase.html?clase=${encodeURIComponent(
+                c.id
+              )}&vista=alumnos">TV / alumnos</a>
+            </div>
+          </div>
+        </article>`
+        ).join("");
+
+        function escapeHtml(str) {
+          return String(str || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;");
+        }
+      })();
+    </script>
   </body>
 </html>
