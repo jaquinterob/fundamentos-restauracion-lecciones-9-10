@@ -651,27 +651,46 @@ body.vista-alumnos .main-stage {
   width: 100%;
   max-width: none;
   min-height: 100vh;
-  padding: clamp(28px, 5vw, 72px);
+  padding: 72px clamp(28px, 5vw, 72px) clamp(48px, 8vw, 96px);
   display: grid;
   align-content: start;
 }
 
 body.vista-alumnos .tv-chrome {
   position: fixed;
-  top: 16px;
-  left: clamp(28px, 5vw, 72px);
-  right: clamp(28px, 5vw, 72px);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 14px clamp(28px, 5vw, 72px) 18px;
   font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #8a8a86;
+  background: #f4f4f2;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+  box-shadow: 0 10px 28px -18px rgba(10, 18, 32, 0.35);
+}
+
+body.vista-alumnos .tv-chrome::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 28px;
+  pointer-events: none;
+  background: linear-gradient(180deg, #f4f4f2 0%, rgba(244, 244, 242, 0) 100%);
 }
 
 .alumno-slide {
   width: min(1100px, 100%);
-  margin: 36px auto 0;
+  margin: 12px auto 0;
   display: grid;
   gap: clamp(20px, 3vw, 36px);
   opacity: 0;

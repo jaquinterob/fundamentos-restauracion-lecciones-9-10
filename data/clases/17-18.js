@@ -1,0 +1,438 @@
+window.IMG = {
+  firstPresidency:
+    "https://newsroom.churchofjesuschrist.org/media/1200x800/first-presidency-2025.JPG",
+};
+
+window.COURSE = {
+  id: "17-18",
+  title: "Fundamentos de la Restauración",
+  code: "Religión 225",
+  lessons: "Lecciones 17 y 18",
+  lessonTitles: [
+    "Permanecer fieles en medio de la oposición y la aflicción",
+    "Las mujeres Santos de los Últimos Días y la Sociedad de Socorro",
+  ],
+  durationMin: 60,
+  teacher: "John Quintero",
+  experienceName: "Teleprompter sagrado",
+};
+
+window.SLIDES = [
+  {
+    id: "apertura",
+    bloque: "Apertura",
+    tipo: "ritual",
+    minutos: 2,
+    titulo: "Bienvenida",
+    ocultarTituloAlumno: true,
+    decir:
+      "Bienvenidos. Hoy veremos dos lecciones que van juntas:\n1) Permanecer fieles en medio de la oposición y la aflicción (lección 17).\n2) Las mujeres Santos de los Últimos Días y la Sociedad de Socorro (lección 18).\n\nTenemos 60 minutos.\n\nEntre 1837 y 1839 los santos enfrentaron apostasía en Kirtland y persecución violenta en Misuri. Luego, en Nauvoo, el Señor organizó a las mujeres de una manera que José dijo que perfeccionaba la Iglesia.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "En una frase: ¿cómo has visto reaccionar a alguien ante una prueba fuerte?",
+    tip: "Anota 2–3 ideas. No corrijas aún. Invita a meditar en pruebas actuales.",
+    imagen: "",
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l17-kirtland",
+    bloque: "Lección 17",
+    tipo: "historia",
+    minutos: 3,
+    titulo: "Crisis en Kirtland",
+    decir:
+      "Tras la dedicación del Templo de Kirtland (1836), un espíritu de especulación y orgullo se extendió. Brigham Young: «se debilitó la determinación de muchos de los hombres más fuertes».\n\nJosé y otros crearon la Sociedad de Seguridad Financiera de Kirtland. En 1837, con el pánico económico, el banco quebró. José perdió más que nadie.\n\nAlgunos —incluso líderes— lo llamaron profeta caído. Otros permanecieron fieles.",
+    escrituras: [],
+    citas: [
+      {
+        autor: "Eliza R. Snow",
+        fuente: "Enseñanzas de los Presidentes de la Iglesia: José Smith",
+        texto:
+          "Muchos de los que habían sido humildes y fieles […] empezaron a volverse de espíritu soberbio y a enaltecerse en el orgullo de su corazón. A medida que los santos bebían del amor y del espíritu del mundo, el Espíritu del Señor se fue alejando de su corazón.",
+      },
+    ],
+    preguntar: "",
+    tip: "Puente: ¿qué aprendemos de quienes permanecieron fieles?",
+    imagen: "",
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "cita",
+  },
+  {
+    id: "l17-marsh",
+    bloque: "Lección 17",
+    tipo: "historia",
+    minutos: 2,
+    titulo: "Thomas B. Marsh busca unidad",
+    decir:
+      "En 1837, Thomas B. Marsh (Presidente de los Doce) estaba en Misuri. Supo que algunos de los Doce criticaban a José y discutían entre sí.\n\nViajó a Kirtland para unificarlos. En el camino se enteró de que José había llamado a dos Apóstoles a Inglaterra —Thomas creía que eso le correspondía a él.\n\nHablaron, resolvieron diferencias, y el Señor dio a Thomas la revelación de D. y C. 112.",
+    escrituras: [],
+    citas: [],
+    preguntar: "",
+    tip: "Breve. Luego leen la revelación.",
+    imagen: "",
+    invitacionAlumno: "estudia",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l17-dc112",
+    bloque: "Lección 17",
+    tipo: "escritura",
+    minutos: 4,
+    titulo: "No endurezcan el corazón",
+    decir:
+      "Lean D. y C. 112. Busquen el consejo del Señor a Thomas y a los Doce cuando la fe es probada.",
+    escrituras: [
+      {
+        ref: "Doctrina y Convenios 112:10, 12–15",
+        texto:
+          "10 Sé humilde; y el Señor tu Dios te llevará de la mano y dará respuesta a tus oraciones.\n\n12 Y ruega por tus hermanos, los Doce. Amonéstalos severamente por causa de mi nombre, y sean amonestados por todos sus pecados; y sed fieles a mi nombre delante de mí.\n\n13 Y después de sus tentaciones y de mucha tribulación, he aquí, yo, el Señor, los buscaré; y si no se obstina su corazón ni se endurece su cerviz en contra de mí, serán convertidos y yo los sanaré.\n\n14 Ahora te digo, y lo que te digo a ti lo digo a todos los Doce: Levantaos y ceñid vuestros lomos, tomad vuestra cruz, venid en pos de mí y apacentad mis ovejas.\n\n15 No seáis soberbios; no os sublevéis en contra de mi siervo José, porque de cierto os digo que estoy con él, y mi mano lo protegerá; y las llaves que a él le he dado, como también a vosotros, no le serán quitadas hasta que yo venga.",
+      },
+    ],
+    citas: [],
+    preguntar: "",
+    tip: "Principio (v. 13): si no endurecemos el corazón cuando la fe es probada, el Señor estará con nosotros y hará más profunda nuestra conversión.",
+    imagen: "",
+    invitacionAlumno: "estudia",
+    alumnoImagen: false,
+    tvFoco: "escritura",
+  },
+  {
+    id: "l17-pregunta-corazon",
+    bloque: "Lección 17",
+    tipo: "actividad",
+    minutos: 3,
+    titulo: "Corazón sumiso",
+    decir: "Escribe el principio en la pizarra. Luego pregunta.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "¿Cómo podrían algunas personas endurecer el corazón cuando su fe es probada?\n\n¿Qué ocurre cuando alguien reacciona con un corazón sumiso?",
+    tip: "1–2 respuestas. Peligros del endurecimiento vs. sanación y conversión más profunda.",
+    imagen: "",
+    invitacionAlumno: "comparte",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l17-liberty",
+    bloque: "Lección 17",
+    tipo: "historia",
+    minutos: 3,
+    titulo: "La cárcel de Liberty",
+    decir:
+      "Muéstrales esta pregunta en la pizarra: ¿Por qué permite Dios que a la gente buena le sucedan cosas malas?\n\nEn 1838, tras conflicto en Misuri, el gobernador emitió una orden de exterminio. José y otros líderes fueron arrestados injustamente y pasaron más de cuatro meses en la cárcel de Liberty, en pleno invierno.\n\nCondiciones: pan de maíz escaso, heno aplanado, humo si encendían fuego, burlas por las ventanas. La Iglesia parecía al borde del colapso.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "¿Por qué permite Dios que a la gente buena le sucedan cosas malas?",
+    tip: "No resuelvas aún. Invita a reflexionar mientras oyen a José.",
+    imagen: "",
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l17-dc121-oracion",
+    bloque: "Lección 17",
+    tipo: "escritura",
+    minutos: 3,
+    titulo: "«Oh Dios, ¿en dónde estás?»",
+    decir:
+      "Desde la cárcel, José envió cartas a la Iglesia. Lean su oración.",
+    escrituras: [
+      {
+        ref: "Doctrina y Convenios 121:1–3",
+        texto:
+          "1 Oh Dios, ¿en dónde estás? ¿Y dónde está el pabellón que cubre tu morada oculta?\n\n2 ¿Hasta cuándo se detendrá tu mano, y tu ojo, sí, tu ojo puro, contemplará desde los cielos eternos los agravios de tu pueblo y de tus siervos, y penetrarán sus lamentos en tus oídos?\n\n3 Sí, oh Señor, ¿hasta cuándo sufrirán estas injurias y opresiones ilícitas, antes que tu corazón se ablande y tus entrañas se llenen de compasión por ellos?",
+      },
+    ],
+    citas: [],
+    preguntar: "",
+    tip: "¿Qué revelan estas preguntas sobre lo que José sentía? Fue una prueba de fe real.",
+    imagen: "",
+    invitacionAlumno: "estudia",
+    alumnoImagen: false,
+    tvFoco: "escritura",
+  },
+  {
+    id: "l17-dc121-paz",
+    bloque: "Lección 17",
+    tipo: "escritura",
+    minutos: 3,
+    titulo: "Paz en la aflicción",
+    decir:
+      "El Señor respondió. Lean. Marquen frases que les llamen la atención.",
+    escrituras: [
+      {
+        ref: "Doctrina y Convenios 121:7–10",
+        texto:
+          "7 Hijo mío, paz a tu alma; tu adversidad y tus aflicciones no serán más que por un breve momento;\n\n8 y entonces, si lo sobrellevas bien, Dios te exaltará; triunfarás sobre todos tus enemigos.\n\n9 Tus amigos te sostienen, y te saludarán de nuevo con corazones fervientes y manos amistosas.\n\n10 No eres aún como Job; no contienden en contra de ti tus amigos, ni te acusan de transgredir, como hicieron con Job.",
+      },
+    ],
+    citas: [],
+    preguntar: "",
+    tip: "Principio: al volvernos al Señor y confiar en Él, Él bendice con revelación, consuelo y aliento.",
+    imagen: "",
+    invitacionAlumno: "estudia",
+    alumnoImagen: false,
+    tvFoco: "escritura",
+  },
+  {
+    id: "l17-dc122",
+    bloque: "Lección 17",
+    tipo: "escritura",
+    minutos: 3,
+    titulo: "Para tu bien",
+    decir: "Sigan con D. y C. 122. Clave: experiencia, el Hijo del Hombre, no temer.",
+    escrituras: [
+      {
+        ref: "Doctrina y Convenios 122:7–9",
+        texto:
+          "7 […] entiende, hijo mío, que todas estas cosas te servirán de experiencia, y serán para tu bien.\n\n8 El Hijo del Hombre ha descendido debajo de todo ello. ¿Eres tú mayor que él?\n\n9 Por tanto, persevera en tu camino, y el sacerdocio quedará contigo; porque los límites de ellos están señalados, y no los pueden traspasar. Tus días son conocidos y tus años no serán acortados; no temas, pues, lo que pueda hacer el hombre, porque Dios estará contigo para siempre jamás.",
+      },
+    ],
+    citas: [],
+    preguntar: "",
+    tip: "Principio: si permanecemos fieles, la aflicción puede darnos experiencia y ser para nuestro bien.",
+    imagen: "",
+    invitacionAlumno: "estudia",
+    alumnoImagen: false,
+    tvFoco: "escritura",
+  },
+  {
+    id: "l17-holland",
+    bloque: "Lección 17",
+    tipo: "caso",
+    minutos: 3,
+    titulo: "Prisiones que llegan a ser templos",
+    decir: "El élder Holland resume la lección de Liberty:",
+    escrituras: [],
+    citas: [
+      {
+        autor: "Élder Jeffrey R. Holland",
+        fuente: "“Lessons from Liberty Jail”, Ensign, septiembre de 2009",
+        texto:
+          "Las enseñanzas del invierno de 1838–1839 nos enseñan que cada aflicción puede transformarse en una experiencia redentora si somos fieles a nuestro Padre Celestial durante esa tribulación. […] si somos humildes, fieles, creyentes y no maldecimos a Dios por nuestros problemas, Él puede convertir las prisiones injustas […] de nuestra vida en templos o al menos en situaciones que nos brinden consuelo, revelación, compañía divina y paz.",
+      },
+    ],
+    preguntar: "",
+    tip: "Pregunta breve: ¿qué significa que una prueba se vuelva «redentora»?",
+    imagen: IMG.firstPresidency,
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "cita",
+  },
+  {
+    id: "l17-actuar",
+    bloque: "Lección 17",
+    tipo: "actividad",
+    minutos: 3,
+    titulo: "Volvernos al Señor",
+    decir:
+      "Con un compañero, respondan la pregunta de la pizarra. Luego 45 s de silencio para anotar una frase de D. y C. 121 o 122 que quieran recordar.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "¿Cómo te has vuelto al Padre Celestial y a Jesucristo en una prueba de fe?\n\n¿Qué frase de hoy quieres llevar contigo esta semana?",
+    tip: "Testifica: cuando nos volvemos al Salvador, Él da paz y profundiza la conversión. Puente a lección 18.",
+    imagen: "",
+    invitacionAlumno: "actua",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l18-mujeres",
+    bloque: "Lección 18",
+    tipo: "actividad",
+    minutos: 3,
+    titulo: "Mujeres que edifican el reino",
+    decir:
+      "Cambiamos de tema, pero sigue siendo la Restauración.\n\nDescribe brevemente a una mujer justa de tu vida. Luego invita a 2–3 alumnos a compartir.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "Piensa en una mujer recta que conozcas. ¿De qué manera edifica el Reino de Dios?",
+    tip: "Escucha. Luego Nelson.",
+    imagen: "",
+    invitacionAlumno: "comparte",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l18-nelson",
+    bloque: "Lección 18",
+    tipo: "caso",
+    minutos: 3,
+    titulo: "Vitales colaboradoras",
+    decir: "El presidente Nelson enseña el lugar de las mujeres que hacen convenios:",
+    escrituras: [],
+    citas: [
+      {
+        autor: "Presidente Russell M. Nelson",
+        fuente: "“Una súplica a mis hermanas”, Liahona, noviembre de 2015",
+        texto:
+          "Mis queridas hermanas […], ustedes […] son nuestras vitales colaboradoras en esta escena final […]. ¡Su virtud, luz, amor, conocimiento, valor, carácter, fe y rectitud atraerán a las buenas mujeres del mundo, junto con las familias de ellas, a la Iglesia en cantidades sin precedente!\n\nNosotros, sus hermanos, necesitamos de su fortaleza, su conversión, su convicción, su capacidad para dirigir, su sabiduría y sus voces. ¡El Reino de Dios no está completo, ni puede estarlo, sin las mujeres que hacen convenios sagrados y los guardan; mujeres que pueden hablar con el poder y la autoridad de Dios!",
+      },
+    ],
+    preguntar: "",
+    tip: "Verdad: los atributos, el liderazgo y las voces de las mujeres que honran sus convenios son esenciales para edificar el Reino.",
+    imagen: IMG.firstPresidency,
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "cita",
+  },
+  {
+    id: "l18-pregunta-nelson",
+    bloque: "Lección 18",
+    tipo: "actividad",
+    minutos: 2,
+    titulo: "Sin ellas el reino no está completo",
+    decir: "Escribe la verdad en la pizarra.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "¿Por qué creen que el Reino de Dios «no está completo, ni puede estarlo» sin las voces y la contribución de las mujeres que honran sus convenios?",
+    tip: "2 respuestas. Luego Emma / D. y C. 25.",
+    imagen: "",
+    invitacionAlumno: "comparte",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l18-emma",
+    bloque: "Lección 18",
+    tipo: "escritura",
+    minutos: 4,
+    titulo: "Emma, dama elegida",
+    decir:
+      "En D. y C. 25 el Señor llamó a Emma a usar su voz, talentos y habilidades. El v. 16: este consejo es «a todos».\n\nLean. Busquen responsabilidades y consejos.",
+    escrituras: [
+      {
+        ref: "Doctrina y Convenios 25:5–7, 10–11, 13, 15–16",
+        texto:
+          "5 Y el oficio de tu llamamiento consistirá en ser un consuelo para mi siervo José Smith, hijo, tu marido, en sus tribulaciones, con palabras consoladoras, con el espíritu de mansedumbre.\n\n6 Y lo acompañarás cuando salga, y le serás por escribiente, mientras no haya otro que escriba por él […].\n\n7 Y serás ordenada por su mano para explicar las Escrituras y para exhortar a la iglesia, de acuerdo con lo que te indique mi Espíritu.\n\n10 Y de cierto te digo que desecharás las cosas de este mundo y buscarás las de uno mejor.\n\n11 Y también te será concedido hacer una selección de himnos sagrados […].\n\n13 Por consiguiente, eleva tu corazón y regocíjate, y adhiérete a los convenios que has hecho.\n\n15 Guarda mis mandamientos continuamente, y recibirás una corona de justicia. […]\n\n16 Y de cierto, de cierto te digo, que esta es mi voz a todos. Amén.",
+      },
+    ],
+    citas: [],
+    preguntar: "",
+    tip: "Emma consoló, escribió, compiló el himnario, cuidó enfermos y obreros del templo. ¿Qué consejo quieren vivir más plenamente?",
+    imagen: "",
+    invitacionAlumno: "estudia",
+    alumnoImagen: false,
+    tvFoco: "escritura",
+  },
+  {
+    id: "l18-organizacion",
+    bloque: "Lección 18",
+    tipo: "historia",
+    minutos: 3,
+    titulo: "Organizada según el sacerdocio",
+    decir:
+      "Primavera de 1842, Nauvoo: hermanas (Sarah Kimball, Margaret Cook) querían coser ropa para los obreros del templo y redactaron estatutos.\n\nJosé: esos reglamentos eran «los mejores que había visto», pero el Señor tenía algo mejor. Las organizó «bajo la dirección del sacerdocio y de acuerdo con el modelo de este».\n\n17 de marzo de 1842, planta alta de la tienda de ladrillos rojos: primera reunión. Emma, presidenta. José: «doy vuelta a la llave para ustedes en el nombre de Dios».",
+    escrituras: [],
+    citas: [
+      {
+        autor: "José Smith",
+        fuente: "Enseñanzas de los Presidentes de la Iglesia: José Smith",
+        texto:
+          "La Iglesia nunca estuvo perfectamente organizada hasta que se organizó a las mujeres de esa manera.",
+      },
+    ],
+    preguntar: "",
+    tip: "Modelo del sacerdocio = revelación, consejos, cuidar uno a uno; obra de salvación y servicio.",
+    imagen: "",
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "cita",
+  },
+  {
+    id: "l18-propositos",
+    bloque: "Lección 18",
+    tipo: "caso",
+    minutos: 3,
+    titulo: "Socorrer y salvar almas",
+    decir: "Propósitos de la Sociedad de Socorro:",
+    escrituras: [],
+    citas: [
+      {
+        autor: "Hermana Julie B. Beck",
+        fuente: "“Lo que las mujeres Santos de los Últimos Días hacen mejor”, Liahona, noviembre de 2007",
+        texto:
+          "José Smith dijo que las mujeres de esta Iglesia se organizaron para «socorrer al pobre, al indigente, a la viuda y al huérfano, y ejercer todo propósito benevolente» y «no solo para socorrer al pobre sino también para salvar almas». […] La Sociedad de Socorro es donde practicamos el ser discípulas de Cristo; aprendemos lo que Él quiere que aprendamos, hacemos lo que quiere que hagamos y llegamos a ser lo que quiere que seamos.",
+      },
+    ],
+    preguntar: "",
+    tip: "Verdad: se organizó para proporcionar alivio al pobre y ayudar a salvar almas.",
+    imagen: "",
+    invitacionAlumno: "medita",
+    alumnoImagen: false,
+    tvFoco: "cita",
+  },
+  {
+    id: "l18-pregunta-ss",
+    bloque: "Lección 18",
+    tipo: "actividad",
+    minutos: 3,
+    titulo: "Captar la visión juntos",
+    decir:
+      "Kimball: hay un poder en la Sociedad de Socorro que no se aprovecha del todo hasta que hermanas y hermanos captan su visión.\n\nSi hay hermanas en clase, invita a 1–2 a compartir bendiciones de la Sociedad de Socorro.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "¿De qué maneras has visto a las mujeres de la Sociedad de Socorro cumplir estos propósitos?\n\n¿Qué pueden hacer mujeres y hombres para captar la visión de la Sociedad de Socorro y trabajar juntos?",
+    tip: "Luego meta personal (siguiente slide).",
+    imagen: "",
+    invitacionAlumno: "comparte",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "l18-actuar",
+    bloque: "Lección 18",
+    tipo: "actividad",
+    minutos: 3,
+    titulo: "Dar un paso al frente",
+    decir:
+      "60 s de silencio. Anoten una meta. Nelson concluye:",
+    escrituras: [],
+    citas: [
+      {
+        autor: "Presidente Russell M. Nelson",
+        fuente: "“Una súplica a mis hermanas”, Liahona, noviembre de 2015",
+        texto:
+          "¡ […] hoy suplico a mis hermanas de La Iglesia de Jesucristo de los Santos de los Últimos Días que den un paso al frente! Como nunca antes, ocupen sus puestos en el hogar, en la comunidad y en el Reino de Dios que les corresponden y que son necesarios.",
+      },
+    ],
+    preguntar:
+      "Hermanas: ¿cómo participarán más plenamente en los propósitos de la Sociedad de Socorro?\n\nHermanos: ¿qué harán para apoyar, alentar y trabajar con las mujeres en la edificación del Reino?",
+    tip: "Si hay tiempo, 1–2 voluntarios. Luego cierre.",
+    imagen: "",
+    invitacionAlumno: "actua",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+  {
+    id: "cierre",
+    bloque: "Cierre",
+    tipo: "ritual",
+    minutos: 2,
+    titulo: "Testimonio e invitación",
+    ocultarTituloAlumno: true,
+    decir:
+      "Hoy vimos dos verdades unidas:\n• En la oposición, si no endurecemos el corazón y nos volvemos a Cristo, Él sana, consuela y convierte las pruebas en experiencia redentora.\n• Las mujeres que hacen convenios —y la Sociedad de Socorro— son esenciales para el Reino; sin ellas no está completo.\n\nSé que Jesucristo estuvo con José en Liberty y que dirige Su Iglesia hoy. Les invito a aferrarse a una frase de D. y C. 121 o 122, y a dar un paso concreto de apoyo o participación con las hermanas esta semana.\n\nGracias. Nos vemos la próxima clase.",
+    escrituras: [],
+    citas: [],
+    preguntar:
+      "Esta semana: una frase de D. y C. 121 o 122 para recordar, y un paso concreto de apoyo o participación con la Sociedad de Socorro.",
+    tip: "Oración de cierre.",
+    imagen: "",
+    invitacionAlumno: "actua",
+    alumnoImagen: false,
+    tvFoco: "pregunta",
+  },
+];

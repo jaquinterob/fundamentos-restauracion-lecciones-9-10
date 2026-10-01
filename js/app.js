@@ -22,7 +22,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement("script");
-      s.src = src.includes("?") ? `${src}&v=2` : `${src}?v=2`;
+      s.src = src.includes("?") ? `${src}&v=3` : `${src}?v=3`;
       s.onload = () => resolve();
       s.onerror = () => reject(new Error(`No se cargó ${src}`));
       document.head.appendChild(s);
@@ -235,53 +235,54 @@
   function renderAlumno(slide) {
     const inv = slide.invitacionAlumno || "medita";
     const showImage = Boolean(slide.alumnoImagen && slide.imagen);
-    const showCitas = slide.tvFoco === "cita" && (slide.citas || []).length;
-    const showEscrituras = (slide.escrituras || []).length > 0;
-    const showPregunta = Boolean(slide.preguntar);
+    const escrituras = slide.escrituras || [];
+    const citas = slide.citas || [];
+    const tieneEscritura = escrituras.length > 0;
+    const tieneCita = citas.length > 0;
+    const tienePregunta = Boolean(slide.preguntar);
 
-    const escrituras = (slide.escrituras || [])
-      .map(
-        (e) => `
+    // Una sola cosa en pantalla: escritura → cita → pregunta (según tvFoco o prioridad)
+    let foco = slide.tvFoco;
+    if (!foco || foco === "imagen") {
+      if (tieneEscritura) foco = "escritura";
+      else if (tieneCita) foco = "cita";
+      else if (tienePregunta) foco = "pregunta";
+      else foco = "pregunta";
+    }
+
+    let body = "";
+    if (foco === "escritura" && tieneEscritura) {
+      const e = escrituras[0];
+      body = `
       <section class="alumno-block alumno-escritura">
         <div class="alumno-kicker">${iconSvg("estudia")}<span>Estudia</span></div>
         <h2 class="ref">${escapeHtml(e.ref)}</h2>
         <p class="verso">${escapeHtml(e.texto)}</p>
-      </section>`
-      )
-      .join("");
-
-    const citas = showCitas
-      ? (slide.citas || [])
-          .slice(0, 1)
-          .map(
-            (c) => `
+      </section>`;
+    } else if (foco === "cita" && tieneCita) {
+      const c = citas[0];
+      body = `
       <section class="alumno-block alumno-cita">
         <div class="alumno-kicker">${iconSvg("medita")}<span>Reflexiona</span></div>
         <p class="verso">${escapeHtml(c.texto)}</p>
         <p class="fuente"><strong>${escapeHtml(c.autor)}</strong> · ${escapeHtml(
-              c.fuente
-            )}</p>
-      </section>`
-          )
-          .join("")
-      : "";
-
-    const pregunta = showPregunta
-      ? `
+        c.fuente
+      )}</p>
+      </section>`;
+    } else if (tienePregunta) {
+      body = `
       <section class="alumno-block alumno-pregunta">
-        <div class="alumno-kicker">${iconSvg(
-          showEscrituras || showCitas ? "comparte" : inv
-        )}<span>${escapeHtml(
-          showEscrituras || showCitas
-            ? "Comparte"
-            : labelInvitacion(inv)
-        )}</span></div>
+        <div class="alumno-kicker">${iconSvg(inv)}<span>${escapeHtml(
+        labelInvitacion(inv)
+      )}</span></div>
         <p class="pregunta">${escapeHtml(slide.preguntar)}</p>
-      </section>`
-      : "";
+      </section>`;
+    }
 
     els.stage.innerHTML = `
-      <article class="alumno-slide" data-inv="${escapeHtml(inv)}">
+      <article class="alumno-slide" data-inv="${escapeHtml(inv)}" data-foco="${escapeHtml(
+      foco
+    )}">
         <header class="alumno-header">
           <p class="alumno-meta">${escapeHtml(slide.bloque)}</p>
           ${
@@ -296,9 +297,7 @@
             : ""
         }
         <div class="alumno-body">
-          ${escrituras}
-          ${citas}
-          ${pregunta}
+          ${body}
         </div>
       </article>`;
   }
