@@ -1,4 +1,5 @@
-:root {
+:root,
+html[data-theme="claro"] {
   --ink: #17140f;
   --ink-soft: #5c5348;
   --paper: #f7f2e8;
@@ -11,6 +12,18 @@
   --gold-soft: #d4b483;
   --sage: #3f5d4e;
   --shadow: 0 18px 50px rgba(10, 18, 32, 0.12);
+  --topbar-bg: rgba(255, 250, 241, 0.92);
+  --chip-bg: #fff;
+  --tv-bg: #f4f4f2;
+  --tv-bg-top: #f7f7f5;
+  --tv-ink: #1a1a1a;
+  --tv-ink-soft: #5a5a56;
+  --tv-muted: #8a8a86;
+  --tv-panel: #eceae4;
+  --tv-border: rgba(26, 26, 26, 0.08);
+  --tv-accent: #1a1a1a;
+  --tv-accent-2: #6b6b66;
+  --tv-accent-3: #9a9a94;
   --radius: 22px;
   --safe-tv: clamp(28px, 4.5vw, 72px);
   --font-display: "Nunito Sans", "Avenir Next", sans-serif;
@@ -19,6 +32,63 @@
   --dur-base: 250ms;
   --dur-slow: 400ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+html[data-theme="sepia"] {
+  --ink: #2c2419;
+  --ink-soft: #6b5d4d;
+  --paper: #ebe3d4;
+  --paper-2: #e0d5c2;
+  --card: #f3ebdc;
+  --line: rgba(44, 36, 25, 0.14);
+  --navy: #4a3728;
+  --navy-deep: #2f2419;
+  --gold: #a67c3d;
+  --gold-soft: #c9a66b;
+  --sage: #5a6b52;
+  --shadow: 0 18px 50px rgba(47, 36, 25, 0.12);
+  --topbar-bg: rgba(243, 235, 220, 0.94);
+  --chip-bg: #f7f0e4;
+  --tv-bg: #ebe3d4;
+  --tv-bg-top: #f0e8da;
+  --tv-ink: #2c2419;
+  --tv-ink-soft: #6b5d4d;
+  --tv-muted: #8a7a66;
+  --tv-panel: #e0d5c2;
+  --tv-border: rgba(44, 36, 25, 0.1);
+  --tv-accent: #5c4a32;
+  --tv-accent-2: #8b7355;
+  --tv-accent-3: #a89070;
+  color-scheme: light;
+}
+
+html[data-theme="oscuro"] {
+  --ink: #e8e2d6;
+  --ink-soft: #b0a898;
+  --paper: #161410;
+  --paper-2: #211c16;
+  --card: #221e18;
+  --line: rgba(232, 226, 214, 0.14);
+  --navy: #c9a66b;
+  --navy-deep: #0d0b09;
+  --gold: #d4b483;
+  --gold-soft: #b08945;
+  --sage: #8fa892;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --topbar-bg: rgba(34, 30, 24, 0.94);
+  --chip-bg: #2a241c;
+  --tv-bg: #161410;
+  --tv-bg-top: #1c1812;
+  --tv-ink: #e8e2d6;
+  --tv-ink-soft: #b0a898;
+  --tv-muted: #8a8070;
+  --tv-panel: #2a241c;
+  --tv-border: rgba(232, 226, 214, 0.1);
+  --tv-accent: #d4b483;
+  --tv-accent-2: #b0a898;
+  --tv-accent-3: #8a8070;
+  color-scheme: dark;
 }
 
 * {
@@ -34,7 +104,22 @@ body {
   background:
     radial-gradient(ellipse at 0% 0%, rgba(176, 137, 69, 0.12), transparent 42%),
     radial-gradient(ellipse at 100% 100%, rgba(19, 35, 58, 0.08), transparent 40%),
-    linear-gradient(180deg, #fbf7ef, var(--paper));
+    linear-gradient(180deg, var(--paper-2), var(--paper));
+  transition: background var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+html[data-theme="oscuro"] body {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(212, 180, 131, 0.08), transparent 42%),
+    radial-gradient(ellipse at 100% 100%, rgba(0, 0, 0, 0.35), transparent 40%),
+    linear-gradient(180deg, #1a1610, var(--paper));
+}
+
+html[data-theme="sepia"] body {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(176, 137, 69, 0.14), transparent 46%),
+    linear-gradient(180deg, #f0e8da, var(--paper));
 }
 
 button,
@@ -239,11 +324,62 @@ img {
   gap: 12px;
   padding: 12px 16px;
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 250, 241, 0.9);
+  background: var(--topbar-bg);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 20;
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--chip-bg);
+}
+
+.theme-switch button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  min-height: 32px;
+}
+
+.theme-switch button.active {
+  background: var(--navy);
+  color: #fff;
+}
+
+html[data-theme="oscuro"] .theme-switch button.active {
+  color: #161410;
+}
+
+.tv-theme-switch {
+  position: fixed;
+  right: clamp(16px, 3vw, 40px);
+  bottom: clamp(16px, 3vw, 32px);
+  z-index: 45;
+  opacity: 0.55;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.tv-theme-switch:hover,
+.tv-theme-switch:focus-within {
+  opacity: 1;
+}
+
+body.vista-maestro .tv-theme-switch {
+  display: none;
 }
 
 .topbar .meta strong {
@@ -265,7 +401,7 @@ img {
 
 .chip {
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--chip-bg);
   color: var(--ink-soft);
   border-radius: 999px;
   padding: 8px 12px;
@@ -277,6 +413,10 @@ img {
   background: var(--navy);
   border-color: var(--navy);
   color: #fff;
+}
+
+html[data-theme="oscuro"] .chip.active {
+  color: #161410;
 }
 
 .timer {
@@ -530,7 +670,7 @@ img {
   height: 56px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--chip-bg);
   color: var(--navy);
   box-shadow: 0 8px 24px rgba(10, 18, 32, 0.12);
   display: inline-flex;
@@ -553,6 +693,10 @@ img {
   background: var(--navy);
   border-color: var(--navy);
   color: #fff;
+}
+
+html[data-theme="oscuro"] .fab-next {
+  color: #161410;
 }
 
 body.vista-maestro .app-shell {
@@ -609,7 +753,8 @@ body.vista-maestro .main-stage {
   width: 100%;
   text-align: left;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--chip-bg);
+  color: var(--ink);
   border-radius: 14px;
   padding: 12px;
   margin-bottom: 8px;
@@ -617,7 +762,7 @@ body.vista-maestro .main-stage {
 
 .toc-item.active {
   border-color: var(--navy);
-  background: rgba(19, 35, 58, 0.05);
+  background: color-mix(in srgb, var(--navy) 10%, var(--chip-bg));
 }
 
 .toc-item small {
@@ -631,10 +776,11 @@ body.vista-maestro .main-stage {
    Solo lo relevante para el alumno.
    Iconos alineados a cursos fundamentales:
    Estudia · Medita · Anota · Analiza · Actúa · Comparte
+   Colores según tema: claro · sepia · oscuro
    ========================= */
 body.vista-alumnos {
-  background: #f4f4f2;
-  color: #1a1a1a;
+  background: linear-gradient(180deg, var(--tv-bg-top), var(--tv-bg));
+  color: var(--tv-ink);
 }
 
 body.vista-alumnos .topbar,
@@ -671,10 +817,10 @@ body.vista-alumnos .tv-chrome {
   font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #8a8a86;
-  background: #f4f4f2;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
-  box-shadow: 0 10px 28px -18px rgba(10, 18, 32, 0.35);
+  color: var(--tv-muted);
+  background: var(--tv-bg);
+  border-bottom: 1px solid var(--tv-border);
+  box-shadow: 0 10px 28px -18px rgba(10, 18, 32, 0.28);
 }
 
 body.vista-alumnos .tv-chrome::after {
@@ -685,7 +831,7 @@ body.vista-alumnos .tv-chrome::after {
   top: 100%;
   height: 28px;
   pointer-events: none;
-  background: linear-gradient(180deg, #f4f4f2 0%, rgba(244, 244, 242, 0) 100%);
+  background: linear-gradient(180deg, var(--tv-bg) 0%, transparent 100%);
 }
 
 .alumno-slide {
@@ -709,7 +855,7 @@ body.vista-alumnos .tv-chrome::after {
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8a8a86;
+  color: var(--tv-muted);
 }
 
 .alumno-header h1 {
@@ -718,7 +864,7 @@ body.vista-alumnos .tv-chrome::after {
   font-weight: 600;
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1.15;
-  color: #151515;
+  color: var(--tv-ink);
   max-width: 18ch;
 }
 
@@ -726,7 +872,7 @@ body.vista-alumnos .tv-chrome::after {
   width: min(640px, 100%);
   border-radius: 4px;
   overflow: hidden;
-  background: #eceae4;
+  background: var(--tv-panel);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -763,7 +909,7 @@ body.vista-alumnos .tv-chrome::after {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #5a5a56;
+  color: var(--tv-ink-soft);
 }
 
 .alumno-kicker svg {
@@ -773,17 +919,17 @@ body.vista-alumnos .tv-chrome::after {
 }
 
 .alumno-escritura {
-  border-left: 3px solid #1a1a1a;
+  border-left: 3px solid var(--tv-accent);
   padding-left: 18px;
 }
 
 .alumno-pregunta {
-  border-left: 3px solid #6b6b66;
+  border-left: 3px solid var(--tv-accent-2);
   padding-left: 18px;
 }
 
 .alumno-cita {
-  border-left: 3px solid #9a9a94;
+  border-left: 3px solid var(--tv-accent-3);
   padding-left: 18px;
 }
 
@@ -792,7 +938,7 @@ body.vista-alumnos .tv-chrome::after {
   font-family: var(--font-body);
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   font-weight: 700;
-  color: #151515;
+  color: var(--tv-ink);
 }
 
 .alumno-block .verso {
@@ -801,13 +947,13 @@ body.vista-alumnos .tv-chrome::after {
   font-size: clamp(1.2rem, 2.2vw, 1.75rem);
   line-height: 1.4;
   white-space: pre-wrap;
-  color: #222;
+  color: var(--tv-ink);
 }
 
 .alumno-block .fuente {
   margin: 12px 0 0;
   font-size: 0.95rem;
-  color: #6b6b66;
+  color: var(--tv-muted);
 }
 
 .alumno-block .pregunta {
@@ -816,7 +962,7 @@ body.vista-alumnos .tv-chrome::after {
   font-size: clamp(1.45rem, 2.8vw, 2.25rem);
   line-height: 1.3;
   white-space: pre-wrap;
-  color: #151515;
+  color: var(--tv-ink);
 }
 
 @media (max-width: 700px) {
@@ -890,7 +1036,8 @@ body.vista-maestro .pregunta-text {
   position: fixed;
   inset: 0;
   z-index: 80;
-  background: #f4f4f2;
+  background: var(--tv-bg);
+  color: var(--tv-ink);
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   padding: 12px clamp(14px, 3vw, 36px) 16px;

@@ -22,7 +22,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement("script");
-      s.src = src.includes("?") ? `${src}&v=3` : `${src}?v=3`;
+      s.src = src.includes("?") ? `${src}&v=4` : `${src}?v=4`;
       s.onload = () => resolve();
       s.onerror = () => reject(new Error(`No se cargó ${src}`));
       document.head.appendChild(s);
@@ -67,9 +67,17 @@
     tvChrome: document.querySelector("[data-tv-chrome]"),
   };
 
+  const THEME_KEY = "fr225-tema";
+  const THEMES = ["claro", "sepia", "oscuro"];
   let vista =
     params.get("vista") ||
     (window.matchMedia("(max-width: 820px)").matches ? "maestro" : "alumnos");
+  let tema = normalizeTema(
+    params.get("tema") ||
+      document.documentElement.getAttribute("data-theme") ||
+      localStorage.getItem(THEME_KEY) ||
+      "sepia"
+  );
   let index = 0;
   let remaining = DURATION;
   let timerRunning = false;
@@ -82,6 +90,7 @@
 
   function boot() {
     restoreState();
+    setTema(tema, false);
     setVista(vista, false);
     renderToc();
     go(index);
@@ -99,6 +108,25 @@
     bindFocusChrome();
   }
 
+  function normalizeTema(value) {
+    return THEMES.includes(value) ? value : "sepia";
+  }
+
+  function setTema(next, pushUrl) {
+    tema = normalizeTema(next);
+    document.documentElement.setAttribute("data-theme", tema);
+    localStorage.setItem(THEME_KEY, tema);
+    document.querySelectorAll("[data-tema]").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-tema") === tema);
+    });
+    if (pushUrl) {
+      const url = new URL(location.href);
+      url.searchParams.set("tema", tema);
+      history.replaceState({}, "", url);
+      publish();
+    }
+  }
+
   function bind() {
     document.querySelectorAll("[data-prev]").forEach((btn) => {
       btn.addEventListener("click", () => go(index - 1));
@@ -113,6 +141,11 @@
     });
     els.btnVistaMaestro?.addEventListener("click", () => setVista("maestro", true));
     els.btnVistaAlumnos?.addEventListener("click", () => setVista("alumnos", true));
+    document.querySelectorAll("[data-tema]").forEach((btn) => {
+      btn.addEventListener("click", () =>
+        setTema(btn.getAttribute("data-tema"), true)
+      );
+    });
   }
 
   function onKey(e) {
@@ -134,6 +167,12 @@
       setVista("maestro", true);
     } else if (e.key.toLowerCase() === "a") {
       setVista("alumnos", true);
+    } else if (e.key === "1") {
+      setTema("claro", true);
+    } else if (e.key === "2") {
+      setTema("sepia", true);
+    } else if (e.key === "3") {
+      setTema("oscuro", true);
     }
   }
 
@@ -553,23 +592,30 @@
         index,
         remaining,
         timerRunning,
+        tema,
         ts: Date.now(),
       })
     );
     const url = new URL(location.href);
     url.searchParams.set("clase", COURSE?.id || classId);
     url.searchParams.set("vista", vista);
+    url.searchParams.set("tema", tema);
     url.searchParams.set("s", String(index));
     history.replaceState({}, "", url);
   }
 
   function onStorage(e) {
+    if (e.key === THEME_KEY && e.newValue) {
+      setTema(e.newValue, false);
+      return;
+    }
     if (e.key !== STORAGE_KEY || !e.newValue) return;
     try {
       const data = JSON.parse(e.newValue);
       applyingRemote = true;
       index = clampInt(data.index, 0, slides.length - 1);
       remaining = Number(data.remaining) || remaining;
+      if (data.tema) setTema(data.tema, false);
       updateTimerDisplay();
       render();
       applyingRemote = false;
@@ -589,6 +635,7 @@
         index = clampInt(data.index, 0, slides.length - 1);
       }
       if (typeof data.remaining === "number") remaining = data.remaining;
+      if (params.get("tema") == null && data.tema) tema = normalizeTema(data.tema);
     } catch (_) {}
   }
 

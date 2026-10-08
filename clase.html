@@ -13,10 +13,20 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/base.css?v=3" />
+    <link rel="stylesheet" href="css/base.css?v=4" />
   </head>
   <body class="vista-maestro ux-1">
     <script>
+      (function () {
+        const saved =
+          new URLSearchParams(location.search).get("tema") ||
+          localStorage.getItem("fr225-tema") ||
+          "sepia";
+        const tema = ["claro", "sepia", "oscuro"].includes(saved)
+          ? saved
+          : "sepia";
+        document.documentElement.setAttribute("data-theme", tema);
+      })();
       document.documentElement.style.setProperty(
         "--font-body",
         '"Nunito Sans", "Avenir Next", sans-serif'
@@ -39,6 +49,11 @@
           <a class="chip" href="index.html">Inicio</a>
           <button type="button" class="chip" data-vista="maestro">Maestro</button>
           <button type="button" class="chip" data-vista="alumnos">Alumnos / TV</button>
+          <div class="theme-switch" role="group" aria-label="Tema">
+            <button type="button" data-tema="claro">Claro</button>
+            <button type="button" data-tema="sepia">Sepia</button>
+            <button type="button" data-tema="oscuro">Oscuro</button>
+          </div>
           <span class="timer" data-timer>60:00</span>
           <button type="button" class="chip" data-timer-toggle>Iniciar</button>
           <button type="button" class="chip" data-menu>Secciones</button>
@@ -46,6 +61,11 @@
       </header>
 
       <div class="tv-chrome" data-tv-chrome></div>
+      <div class="theme-switch tv-theme-switch" role="group" aria-label="Tema TV">
+        <button type="button" data-tema="claro">Claro</button>
+        <button type="button" data-tema="sepia">Sepia</button>
+        <button type="button" data-tema="oscuro">Oscuro</button>
+      </div>
 
       <main class="main-stage">
         <div class="progress-row">
@@ -79,7 +99,7 @@
       </div>
     </div>
 
-    <script src="data/catalog.js?v=3"></script>
-    <script src="js/app.js?v=3"></script>
+    <script src="data/catalog.js?v=4"></script>
+    <script src="js/app.js?v=4"></script>
   </body>
 </html>
