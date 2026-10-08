@@ -1,5 +1,18 @@
 window.CLASS_CATALOG = [
   {
+    id: "19-20",
+    lessons: "Lecciones 19 y 20",
+    label: "Redención de los muertos · Ordenanzas del templo",
+    blurb:
+      "Por qué la redención de los muertos es una doctrina gloriosa y cómo el templo nos arma con el poder del Señor.",
+    durationMin: 60,
+    file: "data/clases/19-20.js",
+    sources: [
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-19-teacher-material-redemption-of-the-dead?lang=spa",
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-20-teacher-material-temple-ordinances-and-worship?lang=spa",
+    ],
+  },
+  {
     id: "17-18",
     lessons: "Lecciones 17 y 18",
     label: "Fieles en la oposición · Mujeres y Sociedad de Socorro",

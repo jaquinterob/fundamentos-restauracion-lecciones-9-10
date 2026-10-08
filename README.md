@@ -2,7 +2,7 @@
 
 Guion interactivo para Religión 225 (experiencia **Teleprompter sagrado**).
 
-Varias clases en el mismo sitio: elige en el inicio o pasa `?clase=17-18` / `?clase=11-12` / `?clase=9-10`.
+Varias clases en el mismo sitio: elige en el inicio o pasa `?clase=19-20` / `?clase=17-18` / `?clase=11-12` / `?clase=9-10`.
 
 - Vista **maestro** (celular): qué decir, tip, escrituras y citas.
 - Vista **alumnos / TV**: tipografía grande para transmitir al televisor.
@@ -15,8 +15,9 @@ python3 -m http.server 8765
 ```
 
 - Inicio: http://127.0.0.1:8765/
-- Lecciones 17–18 (60 min) maestro: http://127.0.0.1:8765/clase.html?clase=17-18&vista=maestro
-- Lecciones 17–18 TV: http://127.0.0.1:8765/clase.html?clase=17-18&vista=alumnos
+- Lecciones 19–20 (60 min) maestro: http://127.0.0.1:8765/clase.html?clase=19-20&vista=maestro
+- Lecciones 19–20 TV: http://127.0.0.1:8765/clase.html?clase=19-20&vista=alumnos
+- Lecciones 17–18 (60 min): `?clase=17-18`
 - Lecciones 11–12 (60 min): `?clase=11-12`
 - Lecciones 9–10 (90 min): `?clase=9-10`
 
