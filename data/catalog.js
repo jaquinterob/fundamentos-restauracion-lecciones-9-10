@@ -1,5 +1,18 @@
 window.CLASS_CATALOG = [
   {
+    id: "21-22",
+    lessons: "Lecciones 21 y 22",
+    label: "Matrimonio eterno · Matrimonio plural",
+    blurb:
+      "La doctrina del matrimonio eterno y la familia, y cómo confiar en el Señor ante el matrimonio plural de los primeros santos.",
+    durationMin: 60,
+    file: "data/clases/21-22.js",
+    sources: [
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-21-teacher-material-the-doctrine-of-eternal-marriage-and-family?lang=spa",
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-22-teacher-material-plural-marriage?lang=spa",
+    ],
+  },
+  {
     id: "19-20",
     lessons: "Lecciones 19 y 20",
     label: "Redención de los muertos · Ordenanzas del templo",
