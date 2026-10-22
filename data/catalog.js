@@ -1,5 +1,18 @@
 window.CLASS_CATALOG = [
   {
+    id: "23-24",
+    lessons: "Lecciones 23 y 24",
+    label: "Martirio de José · Vidente escogido",
+    blurb:
+      "El sacrificio de José y Hyrum en Carthage, y cómo el Señor llamó a José en su debilidad y lo magnificó como vidente escogido.",
+    durationMin: 60,
+    file: "data/clases/23-24.js",
+    sources: [
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-23-teacher-material-the-prophetic-mission-and-the-martyrdom-of-joseph-smith?lang=spa",
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-24-teacher-material-the-prophet-joseph-smith-a-choice-seer?lang=spa",
+    ],
+  },
+  {
     id: "21-22",
     lessons: "Lecciones 21 y 22",
     label: "Matrimonio eterno · Matrimonio plural",
