@@ -1,5 +1,18 @@
 window.CLASS_CATALOG = [
   {
+    id: "25-26",
+    lessons: "Lecciones 25 y 26",
+    label: "Sucesión y éxodo · La Iglesia en el oeste",
+    blurb:
+      "Cómo el Señor dirigió la sucesión tras el martirio, el éxodo al valle del Lago Salado, la fe de los pioneros y las lecciones de Mountain Meadows.",
+    durationMin: 60,
+    file: "data/clases/25-26.js",
+    sources: [
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-25-teacher-material-succession-in-the-presidency-and-the-trek-west?lang=spa",
+      "https://www.churchofjesuschrist.org/study/manual/foundations-of-the-restoration-teacher-material-2019/lesson-26-teacher-material-the-church-in-the-west?lang=spa",
+    ],
+  },
+  {
     id: "23-24",
     lessons: "Lecciones 23 y 24",
     label: "Martirio de José · Vidente escogido",
